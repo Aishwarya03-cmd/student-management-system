@@ -1,14 +1,21 @@
+
 <?php
 
 require_once 'config.php';
+require_once 'functions.php';
 
+// Check student ID
 if (!isset($_GET['id']) || !ctype_digit($_GET['id'])) {
     die("Invalid student ID.");
 }
 
 $id = (int) $_GET['id'];
 
-$stmt = $pdo->prepare("SELECT * FROM students WHERE id = ?");
+// Fetch student details
+$stmt = $pdo->prepare(
+    "SELECT * FROM students WHERE id = ?"
+);
+
 $stmt->execute([$id]);
 
 $student = $stmt->fetch();
@@ -19,19 +26,29 @@ if (!$student) {
 
 $message = "";
 
+// Update student details
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
+    // Security verification
+    verifyCSRFToken();
 
     $name = trim($_POST['name'] ?? '');
     $email = trim($_POST['email'] ?? '');
     $course = trim($_POST['course'] ?? '');
-    $status = $_POST['status'] ?? 'Active';
+    $status = $_POST['status'] ?? '';
 
     if ($name === '' || $email === '' || $course === '') {
+
         $message = "Please fill all fields.";
+
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+
         $message = "Enter a valid email address.";
+
     } elseif (!in_array($status, ['Active', 'Inactive'], true)) {
-        $message = "Invalid status.";
+
+        $message = "Invalid student status.";
+
     } else {
 
         try {
@@ -54,7 +71,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             exit();
 
         } catch (PDOException $e) {
-            $message = "Unable to update student. Email may already exist.";
+
+            if ($e->getCode() == '23000') {
+                $message = "Email already exists.";
+            } else {
+                $message = "Unable to update student.";
+            }
+
         }
     }
 }
@@ -63,17 +86,22 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Student</title>
+
+    <title>Edit Student - EduTrack</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 <div class="main-content">
 
     <section class="form-section">
+
         <h2>Edit Student Details</h2>
 
         <?php if ($message): ?>
@@ -81,6 +109,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <?php endif; ?>
 
         <form method="POST">
+
+            <?= csrfField() ?>
 
             <input
                 type="text"
@@ -106,21 +136,30 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 required
             >
 
-            <select name="status">
-                <option value="Active" <?= $student['status'] === 'Active' ? 'selected' : '' ?>>
+            <select name="status" required>
+
+                <option value="Active"
+                    <?= $student['status'] === 'Active' ? 'selected' : '' ?>>
                     Active
                 </option>
 
-                <option value="Inactive" <?= $student['status'] === 'Inactive' ? 'selected' : '' ?>>
+                <option value="Inactive"
+                    <?= $student['status'] === 'Inactive' ? 'selected' : '' ?>>
                     Inactive
                 </option>
+
             </select>
 
-            <button type="submit">Update Student</button>
+            <button type="submit">
+                Update Student
+            </button>
 
         </form>
 
-        <p><a href="index.php">Back to Dashboard</a></p>
+        <p>
+            <a href="index.php">Back to Dashboard</a>
+        </p>
+
     </section>
 
 </div>
