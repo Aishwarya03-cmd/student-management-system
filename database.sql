@@ -1,12 +1,9 @@
 
--- Create Database
-CREATE DATABASE student_management;
+CREATE DATABASE IF NOT EXISTS student_management;
 
--- Select Database
 USE student_management;
 
--- Create Students Table
-CREATE TABLE students (
+CREATE TABLE IF NOT EXISTS students (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
@@ -15,8 +12,7 @@ CREATE TABLE students (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Insert Sample Student Records
-INSERT INTO students (name, email, course, status)
+INSERT IGNORE INTO students (name, email, course, status)
 VALUES
 ('Rahul Sharma', 'rahul@gmail.com', 'BCA', 'Active'),
 ('Priya Patil', 'priya@gmail.com', 'BBA', 'Active'),
