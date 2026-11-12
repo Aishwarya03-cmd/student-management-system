@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduTrack - Student Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <aside class="sidebar">
+        <h2>Edu<span>Track</span></h2>
+        <p class="menu-title">MAIN MENU</p>
+        <a href="#" class="active">Dashboard</a>
+        <a href="#students">Students</a>
+        <a href="#add-student">Add Student</a>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <h1>Student Dashboard</h1>
+                <p>Manage your students efficiently.</p>
+            </div>
+            <div class="admin">Admin</div>
+        </header>
+
+        <section class="stats">
+            <div class="stat-card">
+                <p>Total Students</p>
+                <h2>120</h2>
+            </div>
+
+            <div class="stat-card">
+                <p>Active Students</p>
+                <h2>95</h2>
+            </div>
+
+            <div class="stat-card">
+                <p>Courses</p>
+                <h2>08</h2>
+            </div>
+        </section>
+
+        <section class="form-section" id="add-student">
+            <h2>Add New Student</h2>
+
+            <form>
+                <input type="text" placeholder="Student Name" required>
+                <input type="email" placeholder="Email Address" required>
+
+                <select required>
+                    <option value="">Select Course</option>
+                    <option>BCA</option>
+                    <option>BBA</option>
+                    <option>B.Com</option>
+                    <option>MCA</option>
+                </select>
+
+                <button type="submit">Add Student</button>
+            </form>
+        </section>
+
+        <section class="table-section" id="students">
+            <h2>Student Records</h2>
+
+            <input type="text" placeholder="Search students...">
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Course</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>01</td>
+                        <td>Rahul Sharma</td>
+                        <td>rahul@gmail.com</td>
+                        <td>BCA</td>
+                        <td>Active</td>
+                    </tr>
+
+                    <tr>
+                        <td>02</td>
+                        <td>Priya Patil</td>
+                        <td>priya@gmail.com</td>
+                        <td>BBA</td>
+                        <td>Active</td>
+                    </tr>
+
+                    <tr>
+                        <td>03</td>
+                        <td>Arjun Rao</td>
+                        <td>arjun@gmail.com</td>
+                        <td>MCA</td>
+                        <td>Inactive</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <footer>
+            © 2026 EduTrack | Student Management System
+        </footer>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
