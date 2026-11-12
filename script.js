@@ -1,60 +1,44 @@
 
 // Student Search Functionality
 
-const searchInput = document.querySelector(
-    '.table-section input'
-);
+const searchInput = document.querySelector("#searchInput");
 
-const studentRows = document.querySelectorAll(
-    '.table-section tbody tr'
-);
+if (searchInput) {
+    searchInput.addEventListener("input", function () {
 
-searchInput.addEventListener('input', function () {
+        const searchValue = this.value.toLowerCase();
 
-    const searchValue = searchInput.value.toLowerCase();
+        const rows = document.querySelectorAll(
+            ".table-section tbody tr"
+        );
 
-    studentRows.forEach(function (row) {
+        rows.forEach(function (row) {
+            const studentData = row.textContent.toLowerCase();
 
-        const studentData = row.textContent.toLowerCase();
+            row.style.display = studentData.includes(searchValue)
+                ? ""
+                : "none";
+        });
+    });
+}
 
-        if (studentData.includes(searchValue)) {
-            row.style.display = '';
-        } else {
-            row.style.display = 'none';
+
+// Delete Confirmation
+
+const deleteForms = document.querySelectorAll(".delete-form");
+
+deleteForms.forEach(function (form) {
+
+    form.addEventListener("submit", function (event) {
+
+        const confirmDelete = confirm(
+            "Are you sure you want to delete this student?"
+        );
+
+        if (!confirmDelete) {
+            event.preventDefault();
         }
 
     });
-
-});
-
-
-// Add Student Form Functionality
-
-const studentForm = document.querySelector('.form-section form');
-
-studentForm.addEventListener('submit', function (event) {
-
-    event.preventDefault();
-
-    const studentName = studentForm.querySelector(
-        'input[type="text"]'
-    ).value.trim();
-
-    const studentEmail = studentForm.querySelector(
-        'input[type="email"]'
-    ).value.trim();
-
-    const studentCourse = studentForm.querySelector(
-        'select'
-    ).value;
-
-    if (!studentName || !studentEmail || !studentCourse) {
-        alert('Please fill all the fields!');
-        return;
-    }
-
-    alert('Student details entered successfully!');
-
-    studentForm.reset();
 
 });
