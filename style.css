@@ -1,0 +1,267 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #f7f3ed;
+    color: #35291f;
+}
+
+/* Sidebar */
+
+.sidebar {
+    width: 245px;
+    height: 100vh;
+    background: #3b2b22;
+    color: #fff;
+    padding: 35px 22px;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+
+.sidebar h2 {
+    font-size: 27px;
+    margin-bottom: 55px;
+}
+
+.sidebar h2 span {
+    color: #d9b98c;
+}
+
+.menu-title {
+    font-size: 11px;
+    color: #b7a99e;
+    letter-spacing: 2px;
+    margin-bottom: 18px;
+}
+
+.sidebar a {
+    display: block;
+    text-decoration: none;
+    color: #d8ccc2;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+    background: #d1ae83;
+    color: #35291f;
+}
+
+/* Main Content */
+
+.main-content {
+    margin-left: 245px;
+    padding: 35px;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+}
+
+.topbar h1 {
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.topbar p {
+    color: #8c7c70;
+    font-size: 14px;
+}
+
+.admin {
+    background: #e9dccb;
+    padding: 12px 22px;
+    border-radius: 25px;
+    font-weight: 600;
+}
+
+/* Statistics Cards */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: #fff;
+    padding: 27px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(65, 45, 30, 0.05);
+    border: 1px solid #eee5da;
+}
+
+.stat-card p {
+    color: #8c7c70;
+    font-size: 14px;
+}
+
+.stat-card h2 {
+    font-size: 32px;
+    margin-top: 14px;
+    color: #684a35;
+}
+
+/* Form Section */
+
+.form-section,
+.table-section {
+    background: #fff;
+    padding: 28px;
+    border-radius: 15px;
+    margin-bottom: 28px;
+    box-shadow: 0 5px 20px rgba(65, 45, 30, 0.04);
+}
+
+.form-section h2,
+.table-section h2 {
+    margin-bottom: 22px;
+    font-size: 20px;
+}
+
+.form-section form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #e4d8ca;
+    border-radius: 8px;
+    outline: none;
+    font-size: 14px;
+    background: #fdfbf8;
+    color: #35291f;
+}
+
+input:focus,
+select:focus {
+    border-color: #94704f;
+}
+
+button {
+    padding: 14px 22px;
+    background: #684a35;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #3b2b22;
+}
+
+/* Table */
+
+.table-section input {
+    max-width: 300px;
+    margin-bottom: 22px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th {
+    background: #f4eee6;
+    color: #684a35;
+    padding: 16px;
+    font-size: 13px;
+}
+
+td {
+    padding: 17px 16px;
+    border-bottom: 1px solid #eee8e0;
+    font-size: 13px;
+}
+
+tr:hover {
+    background: #fdfaf6;
+}
+
+td:last-child {
+    color: #557a56;
+    font-weight: 600;
+}
+
+/* Footer */
+
+footer {
+    text-align: center;
+    color: #958578;
+    font-size: 12px;
+    padding: 20px;
+}
+
+/* Mobile Responsive */
+
+@media (max-width: 768px) {
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding: 18px;
+    }
+
+    .sidebar h2 {
+        margin-bottom: 15px;
+    }
+
+    .sidebar a {
+        display: inline-block;
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    .menu-title {
+        display: none;
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding: 18px;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .form-section form {
+        grid-template-columns: 1fr;
+    }
+
+    .table-section {
+        overflow-x: auto;
+    }
+
+    table {
+        min-width: 600px;
+    }
+
+    .topbar h1 {
+        font-size: 22px;
+    }
+}
